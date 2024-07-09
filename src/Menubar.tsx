@@ -43,7 +43,7 @@ export default function Command() {
           <MenuBarExtra.Submenu
             key={index}
             title={lecture.className}
-            icon={lecture.imgSrc || "https://placehold.co/200x200"}
+            icon={lecture.imgSrc}
           >
             <MenuBarExtra.Item title="Class" subtitle={lecture.class} icon={Icon.Document} onAction={handleAction} />
             <MenuBarExtra.Item title="Instructor" subtitle={lecture.instructor} icon={Icon.Person} onAction={handleAction} />
@@ -56,6 +56,12 @@ export default function Command() {
           </MenuBarExtra.Submenu>
         ))}
       </MenuBarExtra.Section>
+
+      {lectures.length == 0 &&
+        <MenuBarExtra.Section title="No Lectures for Today">
+          <MenuBarExtra.Item title="Go to Infoscreen" icon={Icon.Link} onAction={() => open('https://infoscreen.sae.ch/')} />
+        </MenuBarExtra.Section>
+      }
     </MenuBarExtra>
   );
 }

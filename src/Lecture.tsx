@@ -17,7 +17,7 @@ const LectureCard: React.FC<{ lecture: Lecture }> = ({ lecture }) => {
     <List.Item
       title={lecture.className}
       subtitle={lecture.class}
-      icon={lecture.imgSrc || "https://placehold.co/200x200"}
+      icon={lecture.imgSrc}
       accessories={[
         { text: lecture.classType },
         { text: `${lecture.time} - ${lecture.classroom}` }

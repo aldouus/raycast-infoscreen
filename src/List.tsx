@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { List, showToast, Toast } from "@raycast/api";
+import { List, showToast, Toast, open, Icon, Action, ActionPanel } from "@raycast/api";
 import { fetchLectures } from "./scrape";
 import LectureCard from "./Lecture";
 
@@ -37,6 +37,13 @@ export default function Command() {
       {lectures.map((lecture, index) => (
         <LectureCard key={index} lecture={lecture} />
       ))}
+      {lectures.length == 0 &&
+        <List.EmptyView title="No Lectures for Today" icon={Icon.Calendar} actions={
+          <ActionPanel title="No Lectures for Today">
+            <Action title="Go to Infoscreen" icon={Icon.Link} onAction={() => open('https://infoscreen.sae.ch/')} />
+          </ActionPanel>
+        } />
+      }
     </List>
   );
 }
