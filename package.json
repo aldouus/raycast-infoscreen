@@ -3,7 +3,7 @@
   "name": "infoscreen",
   "title": "Infoscreen",
   "description": "Displays the SAE Institute Zurich Infoscreen",
-  "icon": "command-icon.png",
+  "icon": "/assets/command-icon.png",
   "author": "aldous",
   "license": "MIT",
   "commands": [
@@ -20,7 +20,7 @@
       "name": "menubar",
       "title": "Lectures Menubar",
       "description": "Display lectures in a menubar list",
-      "icon": "command-icon.png",
+      "icon": "/assets/command-icon.png",
       "mode": "menu-bar"
     }
   ],
