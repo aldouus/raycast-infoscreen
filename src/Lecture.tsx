@@ -18,17 +18,14 @@ const LectureCard: React.FC<{ lecture: Lecture }> = ({ lecture }) => {
       title={lecture.className || lecture.classroom}
       subtitle={lecture.class}
       icon={lecture.imgSrc}
-      accessories={[
-        { text: lecture.classType },
-        { text: `${lecture.time} - ${lecture.classroom}` }
-      ]}
+      accessories={[{ text: lecture.classType }, { text: `${lecture.time} - ${lecture.classroom}` }]}
       actions={
         <ActionPanel>
           <Action.Push
             title="Show Details"
             target={
               <Detail
-                markdown={`# ${lecture.className || lecture.classroom}\n\n${lecture.instructor}\n\n${lecture.zoomLink ? `## Zoom Link:\n\n [Zoom Classroom ${lecture.classroom}](${lecture.zoomLink})` : ''}`}
+                markdown={`# ${lecture.className || lecture.classroom}\n\n${lecture.instructor}\n\n${lecture.zoomLink ? `## Zoom Link:\n\n [Zoom Classroom ${lecture.classroom}](${lecture.zoomLink})` : ""}`}
                 metadata={
                   <Detail.Metadata>
                     <Detail.Metadata.Label title="Class" text={lecture.class} />
