@@ -40,16 +40,22 @@ export default function Command() {
     <MenuBarExtra icon={Icon.Calendar} isLoading={isLoading} tooltip="Lectures">
       <MenuBarExtra.Section title="Lectures">
         {lectures.map((lecture, index) => (
-          <MenuBarExtra.Submenu
-            key={index}
-            title={lecture.className}
-            icon={lecture.imgSrc}
-          >
+          <MenuBarExtra.Submenu key={index} title={lecture.className || lecture.classroom} icon={lecture.imgSrc}>
             <MenuBarExtra.Item title="Class" subtitle={lecture.class} icon={Icon.Document} onAction={handleAction} />
-            <MenuBarExtra.Item title="Instructor" subtitle={lecture.instructor} icon={Icon.Person} onAction={handleAction} />
+            <MenuBarExtra.Item
+              title="Instructor"
+              subtitle={lecture.instructor}
+              icon={Icon.Person}
+              onAction={handleAction}
+            />
             <MenuBarExtra.Item title="Type" subtitle={lecture.classType} icon={Icon.Tag} onAction={handleAction} />
             <MenuBarExtra.Item title="Time" subtitle={lecture.time} icon={Icon.Clock} onAction={handleAction} />
-            <MenuBarExtra.Item title="Classroom" subtitle={lecture.classroom} icon={Icon.Building} onAction={handleAction} />
+            <MenuBarExtra.Item
+              title="Classroom"
+              subtitle={lecture.classroom}
+              icon={Icon.Building}
+              onAction={handleAction}
+            />
             {lecture.zoomLink && (
               <MenuBarExtra.Item title="Zoom Link" icon={Icon.Link} onAction={() => open(lecture.zoomLink!)} />
             )}
@@ -57,11 +63,23 @@ export default function Command() {
         ))}
       </MenuBarExtra.Section>
 
-      {lectures.length == 0 &&
+      {lectures.length == 0 ? (
         <MenuBarExtra.Section title="No Lectures for Today">
-          <MenuBarExtra.Item title="Go to Infoscreen" icon={Icon.Link} onAction={() => open('https://infoscreen.sae.ch/')} />
+          <MenuBarExtra.Item
+            title="Go to Infoscreen"
+            icon={Icon.Link}
+            onAction={() => open("https://infoscreen.sae.ch/")}
+          />
         </MenuBarExtra.Section>
-      }
+      ) : (
+        <MenuBarExtra.Section title="Infoscreen">
+          <MenuBarExtra.Item
+            title="Go to Infoscreen"
+            icon={Icon.Link}
+            onAction={() => open("https://infoscreen.sae.ch/")}
+          />
+        </MenuBarExtra.Section>
+      )}
     </MenuBarExtra>
   );
 }

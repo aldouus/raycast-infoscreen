@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ActionPanel, Detail, Action } from "@raycast/api";
+import { List, ActionPanel, Detail, Action, Icon, open } from "@raycast/api";
 
 type Lecture = {
   classroom: string;
@@ -15,7 +15,7 @@ type Lecture = {
 const LectureCard: React.FC<{ lecture: Lecture }> = ({ lecture }) => {
   return (
     <List.Item
-      title={lecture.className}
+      title={lecture.className || lecture.classroom}
       subtitle={lecture.class}
       icon={lecture.imgSrc}
       accessories={[
@@ -28,7 +28,7 @@ const LectureCard: React.FC<{ lecture: Lecture }> = ({ lecture }) => {
             title="Show Details"
             target={
               <Detail
-                markdown={`# ${lecture.className}\n\n${lecture.instructor}\n\n${lecture.zoomLink ? `## Zoom Link:\n\n [Zoom Classroom ${lecture.classroom}](${lecture.zoomLink})` : ''}`}
+                markdown={`# ${lecture.className || lecture.classroom}\n\n${lecture.instructor}\n\n${lecture.zoomLink ? `## Zoom Link:\n\n [Zoom Classroom ${lecture.classroom}](${lecture.zoomLink})` : ''}`}
                 metadata={
                   <Detail.Metadata>
                     <Detail.Metadata.Label title="Class" text={lecture.class} />
@@ -41,6 +41,7 @@ const LectureCard: React.FC<{ lecture: Lecture }> = ({ lecture }) => {
               />
             }
           />
+          <Action title="Go to Infoscreen" icon={Icon.Link} onAction={() => open("https://infoscreen.sae.ch/")} />
         </ActionPanel>
       }
     />
